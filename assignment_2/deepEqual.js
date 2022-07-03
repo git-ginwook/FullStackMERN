@@ -52,9 +52,11 @@ function deepEqual(val1, val2) {
                 }
 
                 // call recursive as needed
-
-
-
+                if(recurArr(val1, val2) === false){
+                    return false;
+                } else {
+                    return true;
+                }
             }
         }
 
@@ -64,9 +66,10 @@ function deepEqual(val1, val2) {
 
 }
 
+
 // recursive for nested objects
 function recurObj(val1, val2){
-    // for in loop to compare each property value
+    // for in loop to compare each property value in an object
     for (const key in val1){
         // recurse
         if(typeof(val1[key]) === 'object'){
@@ -90,9 +93,35 @@ function recurObj(val1, val2){
 
 // recursive for nested arrays
 function recurArr(val1, val2){
-    // for of loop
+    // for loop to compare each element in an array
+    for (let i = 0; i < val1.length; i++){
+        // recurse
+        if(Array.isArray(val1[i]) === true){
+            // check for null as a property value
+            if(val1[i] === null && val2[i] === null){
+                return true;
+            }
+            else if(val1[i] !== null && val2[i] !== null){
+                return recurArr(val1[i], val2[i]);
+            }
+            else{
+                return false;
+            }
+        }
+        // stop recurse
+        else if(val1[i] !== val2[i]){
+            return false;
+        }       
+    }
 
 }
+
+// test debug
+const majors1 = ['CS', 'Math', [1,2,3], {name: 'ginwook', address: 'corvallis'}];
+const majors2 = ['CS', 'Math', [1,2,3], {name: 'ginwook', address: 'beaverton'}];
+
+// expect true
+console.log(deepEqual(majors1, majors2))
 
 
 
