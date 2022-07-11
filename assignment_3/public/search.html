@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Stock Search</title>
+</head>
+
+<body>
+    <!-- the top heading -->
+    <h1>Search Stocks</h1>
+
+    <!-- stock search submit form -->
+    <form action="http://localhost:3000/review" method="GET">
+        <fieldset>
+            <legend>Submit a condition to search stock</legend>
+            <p>Find the stock with the
+                
+                
+                <input type="radio" name="criteria" id="highest" value="highest">
+                <label for="highest"><b>highest</b></label>
+                price or the one with the
+                <input type="radio" name="criteria" id="lowest" value="lowest">
+                <label for="lowest"><b>lowest</b></label>
+                price.
+            </p>
+        </fieldset>
+
+        <!-- submit button -->
+        <button type="submit">Submit</button>
+
+    </form>
+
+</body>
+
+</html>
