@@ -28,7 +28,7 @@ app.get('/random-person', (req, res, next) => {
 
     if (countExpress % interval === 0) {
         // print the count on every 10th request through Express
-        console.log(`Total requests for random-person: ${countExpress}`);
+        console.log(`Total requests for /random-person: ${countExpress}`);
     };
     
     next();
@@ -46,6 +46,11 @@ app.get('/random-person', asyncHandler(async (req, res) => {
 
 // handle error
 app.use((err, req, res, next) => {
+    console.log(`
+        Unhandled error ${err}. 
+        URL = ${req.originalUrl},
+        method = ${req.method}`);
+    
     res.send("500 - Server Error");
 })
 

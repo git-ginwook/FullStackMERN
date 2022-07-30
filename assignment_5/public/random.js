@@ -23,7 +23,6 @@ function appendData(person) {
    // wrap each API data as a <li>
    const li = document.createElement('li');
    li.textContent = createData(person);
-   li.setAttribute("class", "person");
 
    // append each <li> to the ordered list in "data" <div>
    const pl = document.getElementById("data");
