@@ -17,8 +17,37 @@ app.use(express.static('public'));
    Respond using an error handler middleware function when it doesn't work.
 */
 
+// create variables in the server
+const interval = 10;
+let countExpress = 0;
 
+// middleware function to print statistics
+app.get('/random-person', (req, res, next) => {
+    // increment count
+    countExpress += 1;
 
+    if (countExpress % interval === 0) {
+        // print the count on every 10th request through Express
+        console.log(`Total requests for random-person: ${countExpress}`);
+    };
+    
+    next();
+});
+
+// get the random person data via Express server
+app.get('/random-person', asyncHandler(async (req, res) => {
+    // fetch API
+    const random = await fetch('https://randomuser.me/api/');
+    // convert to JSON format
+    const randomJSON = await random.json();
+    // send the JSON as a response
+    res.send(randomJSON);
+}));
+
+// handle error
+app.use((err, req, res, next) => {
+    res.send("500 - Server Error");
+})
 
 
 // Note: Don't add or change anything below this line.

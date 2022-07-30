@@ -13,10 +13,40 @@
 
 <body>
     <!-- Add a header with heading 1 to name the app. -->
-    <!-- Add a main area with a paragraph describing the app's purpose and to instruct the user.-->
-    <!-- Add buttons to the main area for the user to execute the two different ways to call the API. -->
-    <!-- Add a division tag to the main area to render the random data. -->
+    <header>
+        <h1>Random Person API</h1>
+    </header>
+    
+    <main>
+        <article>
+            <!-- Add a main area with a paragraph describing the app's purpose and to instruct the user.-->
+            <p>
+                This app will display data from
+                <a href=:https://randomuser.me/" target="_blank">
+                    Random User Generator web service</a> 
+                and relevant statistics.
+            </p>
+    
+            <!-- Add buttons to the main area for the user to execute the two different ways to call the API. -->
+            <P>Call the API by:
+                <button id="directLink" value="browser">Direct Link</button>
+                <button id="expressLink" value="Express">Express Link</button>
+            </P>
+
+            <!-- Add a division tag to the main area to render the random data. -->
+            <p>Result of random data:
+                <br>
+                <ol>
+                    <div id="data"></div>
+                </ol>
+            </p>
+        </article>
+    </main>
+
     <!-- Add a footer with paragraph that provides a copyright statement. -->
+    <footer>
+        <P><cite>&copy; 2022 GinWook Lee</cite></P>
+    </footer>
 </body>
 
 </html>
