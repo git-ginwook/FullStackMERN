@@ -1,0 +1,83 @@
+/* 
+This style sheet can be used for reference
+but not for an assignment.
+*/
+
+/* Center the body in the middle of the viewport 
+by defining min and max widths with auto right/left margins
+*/
+body {
+  margin:0 auto;
+  min-width:400px;
+  max-width:70%;
+  text-align:center;
+}
+
+/* PAGE LAYOUT 
+Consistant design for each page layout block. 
+*/
+header, main, article, footer {
+  border-bottom:1px solid gray;
+}
+
+/* NAVIGATION
+Simple changes to make anchors look like buttons. 
+*/
+nav {margin: 4px 0 0 0;}
+nav a {
+  text-decoration:none;
+  background-color: gray;
+  padding:4px;
+  margin:4px;
+  color:whitesmoke;
+  font-weight:bold;
+}
+/* Reverse the colors when hovering to give the user some interaction feedback.*/
+nav a:hover {
+  background-color: whitesmoke;
+  color:gray;
+}
+
+/* TABLE */
+table {
+  margin:0 auto;
+}
+caption {color:slategray;}
+tr td, td th {
+  border: 1px solid gray;
+  padding: 8px;
+}
+tr:nth-child(even){background-color:rgb(245, 244, 244);}
+th {
+  font-weight:normal;
+  padding: 4px;
+  background-color: lightgray;
+}
+
+
+/* FORM */
+fieldset {
+  border:1px solid gray;
+}
+legend {
+  background-color:whitesmoke;
+}
+label {
+  display:block;
+  margin-top:20px;
+}
+input {
+  padding:4px;
+}
+button {
+  padding:5px;
+  background-color: gray;
+  color: whitesmoke;
+  border:1px solid gray;
+  border-radius:3px;
+}
+button:hover {
+  background-color: whitesmoke;
+  color: gray;
+}
+
