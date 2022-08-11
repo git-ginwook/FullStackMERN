@@ -8,7 +8,7 @@ app.use(express.json());
 
 
 // CREATE controller ******************************************
-// POST a new exercise
+// 1. Create using POST /exercises
 app.post ('/exercises', (req,res) => { 
     exercises.createExercise(
         req.body.name, 
@@ -28,7 +28,7 @@ app.post ('/exercises', (req,res) => {
 
 
 // RETRIEVE controller ****************************************************
-// GET exercises filtered by name, reps, weight, unit, and/or date
+// 2. Read using GET /exercises
 app.get('/exercises', (req, res) => {
     exercises.readExercises()
         .then(exercises => {
@@ -41,7 +41,7 @@ app.get('/exercises', (req, res) => {
 
 });
 
-// GET exercises by ID
+// 3. GET using GET /exercises/:id
 app.get('/exercises/:_id', (req, res) => {
     const exerciseId = req.params._id;
     exercises.readExerciseById(exerciseId)
@@ -52,6 +52,40 @@ app.get('/exercises/:_id', (req, res) => {
             res.status(404).json({ Error: 'Document not found' });
         });
 
+});
+
+
+// UPDATE controller ************************************
+app.put('/exercises/:_id', (req, res) => {
+    exercises.updateExercise(
+        req.params._id, 
+        req.body.name, 
+        req.body.reps, 
+        req.body.weight,
+        req.body.unit,
+        req.body.date
+    )
+    .then(numUpdated => {
+        if (numUpdated === 1) {
+            res.json({ 
+                _id: req.params._id, 
+                name: req.body.name, 
+                reps: req.body.reps, 
+                weight: req.body.weight,
+                unit: req.body.unit,
+                date: req.body.date 
+            })
+        }
+        // validation rules
+        // if...
+        // if...
+        
+        // else {}
+    })
+    .catch(error => {
+        console.error(error);
+        res.status(404).json({ Error: 'Request to update a document failed' });
+    });
 });
 
 
@@ -71,32 +105,6 @@ app.get('/exercises/:_id', (req, res) => {
 //         });
 // });
 
-// // UPDATE controller ************************************
-// app.put('/movies/:_id', (req, res) => {
-//     movies.replaceMovie(
-//         req.params._id, 
-//         req.body.title, 
-//         req.body.year, 
-//         req.body.language
-//     )
-
-//     .then(numUpdated => {
-//         if (numUpdated === 1) {
-//             res.json({ 
-//                 _id: req.params._id, 
-//                 title: req.body.title, 
-//                 year: req.body.year, 
-//                 language: req.body.language 
-//             })
-//         } else {
-//             res.status(404).json({ Error: 'Document not found' });
-//         }
-//     })
-//     .catch(error => {
-//         console.error(error);
-//         res.status(400).json({ Error: 'Request to update a document failed' });
-//     });
-// });
 
 
 app.listen(PORT, () => {

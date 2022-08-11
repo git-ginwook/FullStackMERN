@@ -32,6 +32,7 @@ const Exercise = mongoose.model("Exercise", exerciseSchema);
 
 
 // CREATE model *****************************************
+// 1. Create using POST /exercises
 const createExercise = async (name, reps, weight, unit, date) => {
     const exercise = new Exercise({ 
         name: name,
@@ -44,17 +45,32 @@ const createExercise = async (name, reps, weight, unit, date) => {
 }
 
 
-// RETRIEVE models *****************************************
+// READ models *****************************************
+// 2. Read using GET /exercises
 // Retrieve based on a filter and return a promise.
 const readExercises = async () => {
     const query = Exercise.find();
     return query.exec();
 }
 
+// 3. GET using GET /exercises/:id
 // Retrieve based on the ID and return a promise.
 const readExerciseById = async (_id) => {
     const query = Exercise.findById(_id);
     return query.exec();
+}
+
+// UPDATE model *****************************************************
+// 4. Update using PUT /exercises/:id
+const updateExercise = async (_id, name, reps, weight, unit, date) => {
+    const result = await Exercise.replaceOne({_id: _id }, {
+        name: name,
+        reps: reps,
+        weight: weight,
+        unit: unit,
+        date: date
+    });
+    return result.modifiedCount;
 }
 
 
@@ -65,19 +81,7 @@ const readExerciseById = async (_id) => {
 // };
 
 
-// // REPLACE model *****************************************************
-// const replaceMovie = async (_id, title, year, language) => {
-//     const result = await Movie.replaceOne({_id: _id }, {
-//         title: title,
-//         year: year,
-//         language: language
-//     });
-//     return result.modifiedCount;
-// }
-
-
-
 // Export our variables for use in the controller file.
-export { createExercise, readExercises, readExerciseById }
+export { createExercise, readExercises, readExerciseById, updateExercise }
 
-// replaceMovie, deleteById 
+// deleteById 

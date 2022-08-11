@@ -129,7 +129,7 @@ content-type: application/json
 ### Request 12: UPDATE the fifth exercise with reps at 12 and unit at kgs (weight remains 20)
 ### CHANGE the value of ID in the following URL 
 ###        to the ID assigned to Deadlift with date 01-22-22.
-PUT http://localhost:3000/exercises/62ec17b8c27f3d06547b7a2b HTTP/1.1
+PUT http://localhost:3000/exercises/62f53f9d498319cxa41c2a08 HTTP/1.1
 content-type: application/json
 
 {
