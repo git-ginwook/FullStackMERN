@@ -46,8 +46,8 @@ const createExercise = async (name, reps, weight, unit, date) => {
 
 // RETRIEVE models *****************************************
 // Retrieve based on a filter and return a promise.
-const readExercises = async (filter) => {
-    const query = Exercise.find(filter);
+const readExercises = async () => {
+    const query = Exercise.find();
     return query.exec();
 }
 

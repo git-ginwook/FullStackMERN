@@ -8,6 +8,7 @@ app.use(express.json());
 
 
 // CREATE controller ******************************************
+// POST a new exercise
 app.post ('/exercises', (req,res) => { 
     exercises.createExercise(
         req.body.name, 
@@ -26,30 +27,10 @@ app.post ('/exercises', (req,res) => {
 });
 
 
+// RETRIEVE controller ****************************************************
 // GET exercises filtered by name, reps, weight, unit, and/or date
 app.get('/exercises', (req, res) => {
-    let filter = {};
-    // filter by name
-    if(req.query.name !== undefined){
-        filter = { name: req.query.name };
-    }
-    // filter by reps
-    if(req.query.reps !== undefined){
-        filter = { reps: req.query.reps };
-    }
-    // filter by weight
-    if(req.query.weight !== undefined){
-        filter = { weight: req.query.weight };
-    }
-    // filter by unit
-    if(req.query.unit !== undefined){
-        filter = { unit: req.query.unit };
-    }
-    // filter by date
-    if(req.query.date !== undefined){
-        filter = { date: req.query.date };
-    }
-    exercises.readExercises(filter, '', 0)
+    exercises.readExercises()
         .then(exercises => {
             res.send(exercises);
         })
@@ -60,21 +41,15 @@ app.get('/exercises', (req, res) => {
 
 });
 
-
-// RETRIEVE controller ****************************************************
 // GET exercises by ID
 app.get('/exercises/:_id', (req, res) => {
     const exerciseId = req.params._id;
-    movies.readExerciseById(exerciseId)
+    exercises.readExerciseById(exerciseId)
         .then(exercise => { 
-            if (exercise !== null) {
-                res.json(exercise);
-            } else {
-                res.status(404).json({ Error: 'Document not found' });
-            }         
+            res.json(exercise);  
          })
         .catch(error => {
-            res.status(400).json({ Error: 'Request to retrieve document failed' });
+            res.status(404).json({ Error: 'Document not found' });
         });
 
 });

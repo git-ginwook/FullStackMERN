@@ -141,7 +141,7 @@ content-type: application/json
 }
 
 ### Request 13: RETRIEVE for non-existent ID. 404 status code
-GET  http://localhost:3000/exercises/62ec0d357984e67ef4eecd77 HTTP/1.1
+GET  http://localhost:3000/exercises/62f531362573120b031e8ecb HTTP/1.1
 
 
 ### Request 14: DELETE the Deadlift with date 01-22-22.
