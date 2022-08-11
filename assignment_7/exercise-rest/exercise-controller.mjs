@@ -18,11 +18,34 @@ app.post ('/exercises', (req,res) => {
         req.body.date
         )
         .then(exercise => {
-            res.status(201).json(exercise);
+            // validations
+            if (
+                // name validation
+                typeof req.body.name !== 'string' ||
+                req.body.name.trim() === '' ||
+                // reps validation
+                typeof req.body.reps !== 'number' || 
+                req.body.reps <= 0 ||
+                // weight validation
+                typeof req.body.weight !== 'number' || 
+                req.body.weight <= 0 ||
+                // unit validation
+                typeof req.body.unit !== 'string' ||
+                !["kgs", "lbs", "miles"].includes(req.body.unit)
+                // date validation: covered by the schema attritbute
+
+            ) {
+                // invalid syntax
+                res.status(400).json({ error: 'catch invalid syntax.' });
+            }
+            else {
+                // valid syntax
+                res.status(201).json(exercise);
+            }
         })
         .catch(error => {
             console.log(error);
-            res.status(400).json({ error: 'Creation of an exercise failed due to invalid syntax.' });
+            res.status(400).json({ error: 'Request failed' });
         });
 });
 
@@ -32,7 +55,7 @@ app.post ('/exercises', (req,res) => {
 app.get('/exercises', (req, res) => {
     exercises.readExercises()
         .then(exercises => {
-            res.send(exercises);
+            res.status(200).send(exercises);
         })
         .catch(error => {
             console.error(error);
@@ -47,14 +70,14 @@ app.get('/exercises/:_id', (req, res) => {
     exercises.readExerciseById(exerciseId)
         .then(exercise => { 
             if (exercise !== null) {
-                res.json(exercise);
+                res.status(200).json(exercise);
             } else {
-                res.status(404).json({ Error: 'Document not found' });    
+                res.status(404).json({ Error: 'Document not found' });
             }
          })
         .catch(error => {
             console.error(error);
-            res.status(400).json({ Error: 'Document not found' });
+            res.status(400).json({ Error: 'Request failed' });
         });
 
 });
@@ -71,25 +94,47 @@ app.put('/exercises/:_id', (req, res) => {
         req.body.date
     )
     .then(numUpdated => {
-        if (numUpdated === 1) {
-            res.json({ 
+        // validations
+        if (
+            // name validation
+            !req.body.date ||
+            typeof req.body.name !== 'string' ||
+            req.body.name.trim() === '' ||
+            // reps validation
+            !req.body.reps ||
+            typeof req.body.reps !== 'number' || 
+            req.body.reps <= 0 ||
+            // weight validation
+            !req.body.weight ||
+            typeof req.body.weight !== 'number' || 
+            req.body.weight <= 0 ||
+            // unit validation
+            !req.body.unit ||
+            typeof req.body.unit !== 'string' ||
+            !["kgs", "lbs", "miles"].includes(req.body.unit) ||
+            // date validation
+            !req.body.date
+                            
+            ) {
+                // invalid syntax
+                res.status(400).json({ error: 'catch invalid syntax.' });
+        } else if (numUpdated === 1) {
+            res.status(200).json({ 
                 _id: req.params._id, 
                 name: req.body.name, 
                 reps: req.body.reps, 
                 weight: req.body.weight,
                 unit: req.body.unit,
                 date: req.body.date 
-            })
+                })
+
+        } else {
+            res.status(404).json({ Error: 'Document not found' });
         }
-        // validation rules
-        // if...
-        // if...
-        
-        // else {}
     })
     .catch(error => {
         console.error(error);
-        res.status(404).json({ Error: 'Request to update a document failed' });
+        res.status(400).json({ Error: 'Request failed' });
     });
 });
 
