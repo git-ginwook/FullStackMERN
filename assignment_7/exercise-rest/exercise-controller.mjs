@@ -26,46 +26,59 @@ app.post ('/exercises', (req,res) => {
 });
 
 
-// // RETRIEVE controller ****************************************************
-// // GET movies by ID
-// app.get('/movies/:_id', (req, res) => {
-//     const movieId = req.params._id;
-//     movies.findMovieById(movieId)
-//         .then(movie => { 
-//             if (movie !== null) {
-//                 res.json(movie);
-//             } else {
-//                 res.status(404).json({ Error: 'Document not found' });
-//             }         
-//          })
-//         .catch(error => {
-//             res.status(400).json({ Error: 'Request to retrieve document failed' });
-//         });
+// GET exercises filtered by name, reps, weight, unit, and/or date
+app.get('/exercises', (req, res) => {
+    let filter = {};
+    // filter by name
+    if(req.query.name !== undefined){
+        filter = { name: req.query.name };
+    }
+    // filter by reps
+    if(req.query.reps !== undefined){
+        filter = { reps: req.query.reps };
+    }
+    // filter by weight
+    if(req.query.weight !== undefined){
+        filter = { weight: req.query.weight };
+    }
+    // filter by unit
+    if(req.query.unit !== undefined){
+        filter = { unit: req.query.unit };
+    }
+    // filter by date
+    if(req.query.date !== undefined){
+        filter = { date: req.query.date };
+    }
+    exercises.readExercises(filter, '', 0)
+        .then(exercises => {
+            res.send(exercises);
+        })
+        .catch(error => {
+            console.error(error);
+            res.send({ Error: 'Request to retrieve documents failed' });
+        });
 
-// });
+});
 
 
-// // GET movies filtered by year or language
-// app.get('/movies', (req, res) => {
-//     let filter = {};
-//     // filter by year
-//     if(req.query.year !== undefined){
-//         filter = { year: req.query.year };
-//     }
-//     // filter by language
-//     if(req.query.language !== undefined){
-//         filter = { language: req.query.language };
-//     }
-//     movies.findMovies(filter, '', 0)
-//         .then(movies => {
-//             res.send(movies);
-//         })
-//         .catch(error => {
-//             console.error(error);
-//             res.send({ Error: 'Request to retrieve documents failed' });
-//         });
+// RETRIEVE controller ****************************************************
+// GET exercises by ID
+app.get('/exercises/:_id', (req, res) => {
+    const exerciseId = req.params._id;
+    movies.readExerciseById(exerciseId)
+        .then(exercise => { 
+            if (exercise !== null) {
+                res.json(exercise);
+            } else {
+                res.status(404).json({ Error: 'Document not found' });
+            }         
+         })
+        .catch(error => {
+            res.status(400).json({ Error: 'Request to retrieve document failed' });
+        });
 
-// });
+});
+
 
 // // DELETE Controller ******************************
 // app.delete('/movies/:_id', (req, res) => {
