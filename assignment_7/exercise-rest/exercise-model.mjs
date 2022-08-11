@@ -14,64 +14,70 @@ db.once("open", (err) => {
     if(err){
         res.status(500).json({ error: '500:Connection to the server failed.' });
     } else  {
-        console.log('Successfully connected to MongoDB Movies collection using Mongoose.');
+        console.log('Successfully connected to MongoDB Exercises collection using Mongoose.');
     }
 });
 
 // SCHEMA: Define the collection's schema.
-const movieSchema = mongoose.Schema({
-	title: { type: String, required: true },
-	year: { type: Number, required: true },
-	language: { type: String, required: true }
+const exerciseSchema = mongoose.Schema({
+	name: { type: String, required: true },
+	reps: { type: Number, required: true },
+	weight: { type: Number, required: true },
+    unit: { type: String, required: true },
+    date: { type: Date, required: true },
 });
 
 // Compile the model from the schema.
-const Movie = mongoose.model("Movie", movieSchema);
+const Exercise = mongoose.model("Exercise", exerciseSchema);
 
 
 // CREATE model *****************************************
-const createMovie = async (title, year, language) => {
-    const movie = new Movie({ 
-        title: title, 
-        year: year, 
-        language: language 
+const createExercise = async (name, reps, weight, unit, date) => {
+    const exercise = new exercise({ 
+        name: name,
+        reps: reps,
+        weight: weight,
+        unit: unit,
+        date: date
     });
-    return movie.save();
+    return exercise.save();
 }
 
 
-// RETRIEVE models *****************************************
-// Retrieve based on a filter and return a promise.
-const findMovies = async (filter) => {
-    const query = Movie.find(filter);
-    return query.exec();
-}
+// // RETRIEVE models *****************************************
+// // Retrieve based on a filter and return a promise.
+// const findMovies = async (filter) => {
+//     const query = Movie.find(filter);
+//     return query.exec();
+// }
 
-// Retrieve based on the ID and return a promise.
-const findMovieById = async (_id) => {
-    const query = Movie.findById(_id);
-    return query.exec();
-}
-
-
-// DELETE model based on ID  *****************************************
-const deleteById = async (_id) => {
-    const result = await Movie.deleteOne({_id: _id});
-    return result.deletedCount;
-};
+// // Retrieve based on the ID and return a promise.
+// const findMovieById = async (_id) => {
+//     const query = Movie.findById(_id);
+//     return query.exec();
+// }
 
 
-// REPLACE model *****************************************************
-const replaceMovie = async (_id, title, year, language) => {
-    const result = await Movie.replaceOne({_id: _id }, {
-        title: title,
-        year: year,
-        language: language
-    });
-    return result.modifiedCount;
-}
+// // DELETE model based on ID  *****************************************
+// const deleteById = async (_id) => {
+//     const result = await Movie.deleteOne({_id: _id});
+//     return result.deletedCount;
+// };
+
+
+// // REPLACE model *****************************************************
+// const replaceMovie = async (_id, title, year, language) => {
+//     const result = await Movie.replaceOne({_id: _id }, {
+//         title: title,
+//         year: year,
+//         language: language
+//     });
+//     return result.modifiedCount;
+// }
 
 
 
 // Export our variables for use in the controller file.
-export { createMovie, findMovies, findMovieById, replaceMovie, deleteById }
+export { createExercise }
+
+// , findMovies, findMovieById, replaceMovie, deleteById 
