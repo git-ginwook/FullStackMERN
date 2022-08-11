@@ -27,7 +27,7 @@ app.post ('/exercises', (req,res) => {
 });
 
 
-// RETRIEVE controller ****************************************************
+// READ controllers ****************************************************
 // 2. Read using GET /exercises
 app.get('/exercises', (req, res) => {
     exercises.readExercises()
@@ -46,10 +46,15 @@ app.get('/exercises/:_id', (req, res) => {
     const exerciseId = req.params._id;
     exercises.readExerciseById(exerciseId)
         .then(exercise => { 
-            res.json(exercise);  
+            if (exercise !== null) {
+                res.json(exercise);
+            } else {
+                res.status(404).json({ Error: 'Document not found' });    
+            }
          })
         .catch(error => {
-            res.status(404).json({ Error: 'Document not found' });
+            console.error(error);
+            res.status(400).json({ Error: 'Document not found' });
         });
 
 });
@@ -89,22 +94,22 @@ app.put('/exercises/:_id', (req, res) => {
 });
 
 
-// // DELETE Controller ******************************
-// app.delete('/movies/:_id', (req, res) => {
-//     movies.deleteById(req.params._id)
-//         .then(deletedCount => {
-//             if (deletedCount === 1) {
-//                 res.status(204).send();
-//             } else {
-//                 res.status(404).json({ Error: 'Document not found' });
-//             }
-//         })
-//         .catch(error => {
-//             console.error(error);
-//             res.send({ error: 'Request to delete a document failed' });
-//         });
-// });
-
+// DELETE Controller ******************************
+// 5. DELETE using DELETE /exercises/:id
+app.delete('/exercises/:_id', (req, res) => {
+    exercises.deleteById(req.params._id)
+        .then(deletedCount => {
+            if (deletedCount === 1) {
+                res.status(204).send();
+            } else {
+                res.status(404).json({ Error: 'Document not found' });
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            res.status(400).json({ Error: 'Request failed' });
+        });
+});
 
 
 app.listen(PORT, () => {
