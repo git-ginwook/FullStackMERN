@@ -1,11 +1,11 @@
 {
-  "name": "movies-api",
+  "name": "exercise-rest",
   "version": "1.0.0",
   "description": "",
-  "main": "movies-controller.mjs",
+  "main": "exercise-controller.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon movies-controller.mjs"
+    "start": "nodemon exercise-controller.mjs"
   },
   "author": "",
   "license": "ISC",

@@ -33,7 +33,7 @@ content-type: application/json
 }
 
 ###
-DELETE http://localhost:3000/movies/62e02485a7d7c688947d7132 HTTP/1.1
+DELETE http://localhost:3000/movies/62f47f02f4bbe351c2e74678 HTTP/1.1
 
 
 ###
