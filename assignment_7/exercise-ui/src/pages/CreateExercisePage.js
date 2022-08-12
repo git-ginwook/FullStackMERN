@@ -59,12 +59,11 @@ export const CreateExercisePage = () => {
                         id="weight" />
 
                     <label for="unit">Unit</label>
-                    <input
-                        // add <select> element
-                        type="text"
-                        value={unit}
-                        onChange={e => setUnit(e.target.value)} 
-                        id="unit" />
+                    <select name="unit" id="unit">
+                        <option value="kgs">kgs</option>
+                        <option value="lbs">lbs</option>
+                        <option value="miles">miles</option>
+                    </select>           
 
                     <label for="date">Date</label>
                     <input
