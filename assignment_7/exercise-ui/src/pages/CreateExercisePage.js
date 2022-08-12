@@ -60,6 +60,7 @@ export const CreateExercisePage = () => {
 
                     <label for="unit">Unit</label>
                     <input
+                        // add <select> element
                         type="text"
                         value={unit}
                         onChange={e => setUnit(e.target.value)} 
