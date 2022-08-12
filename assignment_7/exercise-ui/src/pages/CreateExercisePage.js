@@ -6,7 +6,7 @@ export const CreateExercisePage = () => {
     const [name, setName] = useState('');
     const [reps, setReps] = useState('');
     const [weight, setWeight] = useState('');
-    const [unit, setUnit] = useState('');
+    const [unit, setUnit] = useState('kgs');
     const [date, setDate] = useState('');
 
     const history = useHistory();
@@ -42,24 +42,33 @@ export const CreateExercisePage = () => {
                         placeholder="Name of the exercise"
                         value={name}
                         onChange={e => setName(e.target.value)} 
-                        id="name" />
+                        id="name"
+                        required />
                     
                     <label for="reps">Reps</label>
                     <input
                         type="number"
                         value={reps}
                         onChange={e => setReps(Number(e.target.value))} 
-                        id="reps" />
+                        id="reps"
+                        required />
 
                     <label for="weight">Weight</label>
                     <input
                         type="number"
                         value={weight}
                         onChange={e => setWeight(Number(e.target.value))} 
-                        id="weight" />
+                        id="weight"
+                        required />
 
                     <label for="unit">Unit</label>
-                    <select name="unit" id="unit">
+                    <select 
+                        required = "required"
+                        type="text"
+                        name="unit" 
+                        id="unit"
+                        onChange={e => setUnit(e.target.value)} 
+                        >
                         <option value="kgs">kgs</option>
                         <option value="lbs">lbs</option>
                         <option value="miles">miles</option>
@@ -67,11 +76,12 @@ export const CreateExercisePage = () => {
 
                     <label for="date">Date</label>
                     <input
-                        type="text"
+                        type="date"
                         placeholder="MM-DD-YY"
                         value={date}
                         onChange={e => setDate(e.target.value)} 
-                        id="date" />
+                        id="date"
+                        required />
 
                     <label for="create">
                     <button
