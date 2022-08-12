@@ -13,19 +13,35 @@ app.use(express.json());
 
 // CREATE controller ******************************************
 // 1. Create using POST /exercises
-app.post ('/exercises', (req, res) => {
-    exercises.createExercise(
-        req.body.name,
-        req.body.reps,
-        req.body.weight,
-        req.body.unit,
-        req.body.date
-    ).then(exercise => {
-        res.status(201).json(exercise);
-    }).catch(error => {
-        res.status(400).json( {Error: 'Invalid request'} )
-    })
-})
+app.post ('/exercises', [
+    // validations
+    check('name').not().isEmpty().trim().isLength( {min: 0} ).escape(),
+    check('reps').isInt( {gt:0} ),
+    check('weight').isInt( {gt:0} ),
+    check('unit').isIn( ["kgs", "lbs", "miles"] ),
+    check('date').isBefore(Date())
+    ],
+    (req, res) => {
+        const errors = validationResult(req);
+        
+        if (!errors.isEmpty()) {
+            return res.status(400).json( {Error: 'Invalid request'} )
+        } else {
+        exercises.createExercise(
+            req.body.name,
+            req.body.reps,
+            req.body.weight,
+            req.body.unit,
+            req.body.date
+        ).then(exercise => {
+            res.status(201).json(exercise);
+        }).catch(error => {
+            console.error(error);
+            res.status(400).json({ Error: 'Request failed' });
+            })
+        }
+    }
+)
 
 
 // READ controllers ****************************************************
