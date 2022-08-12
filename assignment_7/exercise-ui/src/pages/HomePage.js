@@ -33,7 +33,7 @@ function HomePage({ setExerciseToEdit }) {
             const deleteData = await getResponse.json();
             setExercises(deleteData);
         } else {
-            console.error(`Failed to delete movie with _id = ${_id}, status code = ${response.status}`)
+            console.error(`Failed to delete exercise with _id = ${_id}, status code = ${response.status}`)
         }
     }
 
