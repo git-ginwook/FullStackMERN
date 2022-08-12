@@ -2,18 +2,18 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import { useState } from 'react';
 
-export const EditExercisePage = ({ exercise }) => {
+export const EditExercisePage = ({ exerciseToEdit }) => {
  
-    const [name, setName] = useState(exercise.name);
-    const [reps, setReps] = useState(exercise.reps);
-    const [weight, setWeight] = useState(exercise.weight);
-    const [unit, setUnit] = useState(exercise.unit);
-    const [date, setDate] = useState(exercise.date.substring(0,10));
+    const [name, setName] = useState(exerciseToEdit.name);
+    const [reps, setReps] = useState(exerciseToEdit.reps);
+    const [weight, setWeight] = useState(exerciseToEdit.weight);
+    const [unit, setUnit] = useState(exerciseToEdit.unit);
+    const [date, setDate] = useState(exerciseToEdit.date.substring(0,10));
     
     const history = useHistory();
 
     const editExercise = async () => {
-        const response = await fetch(`/exercises/${exercise._id}`, {
+        const response = await fetch(`/exercises/${exerciseToEdit._id}`, {
             method: 'PUT',
             body: JSON.stringify({ 
                 name: name, 
@@ -27,6 +27,10 @@ export const EditExercisePage = ({ exercise }) => {
 
         if (response.status === 200) {
             alert(`Successfully edited document! Status code = ${response.status}`);
+        } else if (response.status === 404) {
+            alert(`Document not found. Status ${response.status}`);
+        } else if (response.status === 400) {
+            alert(`Edit request failed. Status ${response.status}`)
         } else {
             const errMessage = await response.json();
             alert(`Failed to edit document. Status ${response.status}. ${errMessage.Error}`);
@@ -44,7 +48,6 @@ export const EditExercisePage = ({ exercise }) => {
                     <label for="name">Name</label>
                     <input
                         type="text"
-                        placeholder="Name of the exercise"
                         value={name}
                         onChange={e => setName(e.target.value)} 
                         id="name" 
@@ -82,7 +85,6 @@ export const EditExercisePage = ({ exercise }) => {
                     <label for="date">Date</label>
                     <input
                         type="date"
-                        placeholder="MM-DD-YY"
                         value={date}
                         onChange={e => setDate(e.target.value)} 
                         id="date"
@@ -93,7 +95,7 @@ export const EditExercisePage = ({ exercise }) => {
                         type="submit"
                         onClick={editExercise}
                         id="edit"
-                    >Edit</button></label>
+                    >Save</button></label>
                 </fieldset>
                 </form>
             </article>

@@ -3,7 +3,7 @@ import ExerciseList from '../components/ExerciseList';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-function HomePage({ setExercise }) {
+function HomePage({ setExerciseToEdit }) {
     // Use the history for updating
     const history = useHistory();
 
@@ -20,7 +20,7 @@ function HomePage({ setExercise }) {
 
     // UPDATE an exercise
     const onEdit = async exercise => {
-        setExercise(exercise);
+        setExerciseToEdit(exercise);
         history.push("/edit-exercise");
     }
 

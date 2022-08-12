@@ -15,7 +15,7 @@ import EditExercisePage from './pages/EditExercisePage';
 // Define the function that renders the content in routes using State.
 function App() {
 
-  const [exercise, setExercise] = useState([]);
+  const [exerciseToEdit, setExerciseToEdit] = useState([]);
 
   return (
     <>
@@ -30,7 +30,7 @@ function App() {
 
           <main>
             <Route path="/" exact>
-              <HomePage setExercise={setExercise} />
+              <HomePage setExerciseToEdit={setExerciseToEdit} />
             </Route>
 
             <Route path="/create-exercise">
@@ -38,7 +38,7 @@ function App() {
             </Route>
             
             <Route path="/edit-exercise">
-              <EditExercisePage exercise={exercise} />
+              <EditExercisePage exerciseToEdit={exerciseToEdit} />
             </Route>
           </main>
 
