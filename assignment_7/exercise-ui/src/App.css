@@ -156,6 +156,20 @@ input {
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size:medium;
 }
+select {
+  color:#DC4405;
+  background-color:whitesmoke;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size:medium;
+  margin:10px;
+  padding:5px;
+  width:100%;
+  padding:12px 20px;
+  margin:8px 0px;
+  box-sizing:border-box;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size:medium; 
+}
 
 button:hover {
   background-color: whitesmoke;

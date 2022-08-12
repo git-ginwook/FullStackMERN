@@ -32,14 +32,13 @@ export const CreateExercisePage = () => {
     return (
         <>
         <article>
-            <h2>Create new exercise</h2>
+            <h3>Create new exercise</h3>
             <p>Enter values for a new exercise</p>
             <form onSubmit={(e) => { e.preventDefault();}}>
                 <fieldset>
                     <label for="name">Name</label>
                     <input
                         type="text"
-                        placeholder="Name of the exercise"
                         value={name}
                         onChange={e => setName(e.target.value)} 
                         id="name"
@@ -77,7 +76,6 @@ export const CreateExercisePage = () => {
                     <label for="date">Date</label>
                     <input
                         type="date"
-                        placeholder="MM-DD-YY"
                         value={date}
                         onChange={e => setDate(e.target.value)} 
                         id="date"
