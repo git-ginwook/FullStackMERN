@@ -46,7 +46,7 @@ function HomePage({ setExerciseToEdit }) {
     return (
         <>
             <article>
-                <h2>Exercises Database</h2>
+                <h3>Exercises Database</h3>
                 <p>Tracking exercises</p>
                 <ExerciseList 
                     exercises={exercises} 

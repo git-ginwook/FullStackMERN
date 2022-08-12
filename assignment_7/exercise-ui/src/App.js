@@ -23,7 +23,7 @@ function App() {
           {/* Global Design Features */}
           <header>
             <h1>Exercise Tracker</h1>
-            <p>full-stack MERN Web App</p>
+            <h2>full-stack MERN Web App</h2>
           </header>
 
           <Navigation />
