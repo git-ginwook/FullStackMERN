@@ -18,7 +18,7 @@ content-type: application/json
     "name": "ginwook-test",
     "reps": 15,
     "weight": 55,
-    "unit": "mls",
+    "unit": "miles",
     "date": "01-18-22"
 }
 
@@ -148,12 +148,12 @@ GET  http://localhost:3000/exercises/62f531362573120b031e8ecb HTTP/1.1
 ### CHANGE the value of ID in the following URL to the ID assigned
 ###     to Deadlift with date 01-22-22. You can find that ID from the
 ##      previous retrieve request.
-DELETE http://localhost:3000/exercises/62f5c744ab89641ce8c390ad HTTP/1.1
+DELETE http://localhost:3000/exercises/62f5e45d5f29886c8184ad89 HTTP/1.1
 
 
 ### Request 15: VERIFY that the Deadlift on 01-22-22 
 ### has been deleted, to get a 404 status code.
-GET http://localhost:3000/exercises/62f5479b56818765888a4cb6 HTTP/1.1
+GET http://localhost:3000/exercises/62f5e45d5f29886c8184ad89 HTTP/1.1
 
 
 ### Request 16: VERIFY that the Deadlift on 01-25-22 has been deleted.

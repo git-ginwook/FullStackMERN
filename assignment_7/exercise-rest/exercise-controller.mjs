@@ -9,7 +9,6 @@ const PORT = process.env.PORT;
 const app = express();
 app.use(express.json());
 
-// const { check, valResult } = require('express-validator')
 
 // CREATE controller ******************************************
 // 1. Create using POST /exercises
