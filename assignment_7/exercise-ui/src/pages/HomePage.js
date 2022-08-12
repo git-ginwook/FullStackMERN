@@ -1,57 +1,57 @@
 import React from 'react';
-import MovieList from '../components/MovieList';
+import ExerciseList from '../components/ExerciseList';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-function HomePage({ setMovie }) {
+function HomePage({ setExercise, onEdit }) {
     // Use the history for updating
     const history = useHistory();
 
     // Use state to bring in the data
-    const [movies, setMovies] = useState([]);
+    const [exercises, setExercises] = useState([]);
 
-    // RETRIEVE the list of movies
-    const loadMovies = async () => {
-        const response = await fetch('/movies');
-        const movies = await response.json();
-        setMovies(movies);
+    // RETRIEVE the list of exercises
+    const loadExercises = async () => {
+        const response = await fetch('/exercises');
+        const exerciseData = await response.json();
+        setExercises(exerciseData);
     } 
     
 
-    // UPDATE a movie
-    const onEditMovie = async movie => {
-        setMovie(movie);
-        history.push("/edit-movie");
+    // UPDATE an exercise
+    const onEditExercise = async exercise => {
+        setExercise(exercise);
+        history.push("/edit-exercise");
     }
 
 
-    // DELETE a movie  
-    const onDeleteMovie = async _id => {
-        const response = await fetch(`/movies/${_id}`, { method: 'DELETE' });
+    // DELETE an exercise  
+    const onDelete = async _id => {
+        const response = await fetch(`/exercises/${_id}`, { method: 'DELETE' });
         if (response.status === 204) {
-            const getResponse = await fetch('/movies');
-            const movies = await getResponse.json();
-            setMovies(movies);
+            const getResponse = await fetch('/exercises');
+            const deleteData = await getResponse.json();
+            setExercises(deleteData);
         } else {
             console.error(`Failed to delete movie with _id = ${_id}, status code = ${response.status}`)
         }
     }
 
-    // LOAD the movies
+    // LOAD the exercises
     useEffect(() => {
-        loadMovies();
+        loadExercises();
     }, []);
 
-    // DISPLAY the movies
+    // DISPLAY the exercises
     return (
         <>
             <article>
-                <h2>List of Movies</h2>
-                <p>Paragraph about this page.</p>
-                <MovieList 
-                    movies={movies} 
-                    onEdit={onEditMovie} 
-                    onDelete={onDeleteMovie} 
+                <h2>Exercises Database</h2>
+                <p>Tracking exercises</p>
+                <ExerciseList 
+                    exercises={exercises} 
+                    onEdit={onEdit} 
+                    onDelete={onDelete} 
                 />
             </article>
         </>

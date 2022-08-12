@@ -9,41 +9,41 @@ import './App.css';
 
 // Import Pages
 import HomePage from './pages/HomePage';
-import AddMoviePage from './pages/AddMoviePage';
-import EditMoviePage from './pages/EditMoviePage';
+import CreateExercisePage from './pages/CreateExercisePage';
+import EditExercisePage from './pages/EditExercisePage';
 
 // Define the function that renders the content in routes using State.
 function App() {
 
-  const [movie, setMovie] = useState([]);
+  const [exercise, setExercise] = useState([]);
 
   return (
     <>
       <Router>
-
+          {/* Global Design Features */}
           <header>
-            <h1>Collection of Movies</h1>
-            <p>This app uses MERN.</p>
+            <h1>Exercise Tracker</h1>
+            <p>full-stack MERN Web App</p>
           </header>
 
           <Navigation />
 
           <main>
             <Route path="/" exact>
-              <HomePage setMovie={setMovie} />
+              <HomePage setExercise={setExercise} />
             </Route>
 
-            <Route path="/add-movie">
-              <AddMoviePage />
+            <Route path="/create-exercise">
+              <CreateExercisePage />
             </Route>
             
-            <Route path="/edit-movie">
-              <EditMoviePage movie={movie} />
+            <Route path="/edit-exercise">
+              <EditExercisePage exercise={exercise} />
             </Route>
           </main>
 
           <footer>
-            <p>Copyright statement</p>
+            <cite>&copy; 2022 GinWook Lee</cite>
           </footer>
 
       </Router>
