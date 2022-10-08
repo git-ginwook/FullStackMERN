@@ -1,0 +1,189 @@
+/* 
+This style sheet can be used for reference
+but not for an assignment.
+*/
+
+/* import font */
+@import url(https://fonts.google.com/css?Family=Kanit);
+
+
+/* Center the body in the middle of the viewport 
+by defining min and max widths with auto right/left margins
+*/
+body {
+  color:#DC4405;
+  background-color:whitesmoke;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size:medium;
+  margin:10px;
+  padding:5px;
+}
+
+/* NAVIGATION
+Simple changes to make anchors look like buttons. 
+*/
+nav {
+  text-align:center;
+  font-family:"Kanit";
+}
+nav a {
+  background-color:whitesmoke;
+  color:#DC4405;
+  border:2px solid #DC4405;
+  font-size:20pt;
+  font-weight:bold;
+  line-height:50px;
+  margin:40px;
+  padding:5px;
+  text-decoration:none;
+  vertical-align:middle;
+}
+/* Reverse the colors when hovering to give the user some interaction feedback.*/
+nav a:hover {
+  background-color:#DC4405;
+  color:whitesmoke;
+}
+
+/* PAGE LAYOUT 
+Consistant design for each page layout block. 
+*/
+header, footer {
+  background-color:#DC4405;
+  color:whitesmoke;
+  border:1px;
+  font-size:large;
+  font-weight:bold;
+  margin:1px;
+  padding:0em 1em;
+}
+h1 {
+  font-family:"Kanit";
+  color:bisque;
+}
+h2 {
+  font-family:"Kanit";
+  color:bisque;
+}
+h3 {
+  font-family:"Kanit";
+  font-size:30pt;
+  color:darkslategrey;
+}
+p {
+  font-family:"Kanit";
+  font-size:20pt;
+  color:darkslategrey;
+}
+main {
+  background-color:whitesmoke;
+  color:darkslategrey;
+  border:1px;
+  padding:5px;
+}
+
+
+/* TABLE */
+table {
+  border-collapse: collapse;
+  margin-bottom:20px;
+  width:100%;
+}
+caption {
+  font-weight:bold;
+  padding:1px;
+  font-size:17pt;
+}
+thead {
+  text-align:center;
+  font-weight:bold;
+  font-size:16pt;
+  margin:5px 5px;
+  height:50px;
+}
+tbody {
+  text-align:center;
+  font-size:14pt;
+  height:200px;
+}
+tr {
+  border:1px;
+  padding:1px;
+}
+  tr:nth-child(even) {
+    background:lightsalmon;
+  }
+th {
+  background: whitesmoke;
+  color: #DC4405;
+  border:1px;
+  padding:1px;
+}
+td {
+  border:1px;
+  padding:1px;
+}
+
+
+/* FORM */
+fieldset {
+  border:2px solid #DC4405;
+  font-weight:bold;
+}
+legend {
+  background-color:whitesmoke;
+}
+label {
+  display:block;
+  margin-top:20px;
+}
+button {
+  padding:10px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size:medium;
+}
+input {
+  color:#DC4405;
+  background-color:whitesmoke;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size:medium;
+  margin:10px;
+  padding:5px;
+
+  width:100%;
+  padding:12px 20px;
+  margin:8px 0px;
+  box-sizing:border-box;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size:medium;
+}
+select {
+  color:#DC4405;
+  background-color:whitesmoke;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size:medium;
+  margin:10px;
+  padding:5px;
+  width:100%;
+  padding:12px 20px;
+  margin:8px 0px;
+  box-sizing:border-box;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size:medium; 
+}
+
+button:hover {
+  background-color: whitesmoke;
+  color: gray;
+}
+
+
+@keyframes App-logo {}
+
+/*   ===== TABLET  media query overrides mobile styles ===== */
+@media all and (min-width: 600px) {}
+
+/*   ===== DESKTOP  media query overrides mobile and tablet styles ===== */
+@media all and (min-width: 1080px) {}
+
+/*   ===== PRINT  media query overrides previous styles =====  */
+@media print {}
